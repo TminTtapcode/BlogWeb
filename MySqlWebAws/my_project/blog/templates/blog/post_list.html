@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Danh sách bài đăng{% endblock %}
+
+{% block content %}
+    <h1>Chào mừng đến với Blog!</h1>
+    <hr>
+
+    {% for post in posts %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <a href="{% url 'post_detail' post.pk %}" class="text-decoration-none">
+                        {{ post.title }}
+                    </a>
+                </h2>
+                <p class="card-subtitle text-muted mb-2">
+                    Đăng lúc: {{ post.created_at }}
+                </p>
+                <p class="card-text">{{ post.content|truncatewords:50 }}</p>
+                <a href="{% url 'post_detail' post.pk %}" class="btn btn-primary">
+                    Đọc thêm &rarr;
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}Xác nhận xóa{% endblock %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-body">
+            <h2 class="card-title">Bạn có chắc chắn muốn xóa bài đăng này?</h2>
+            <hr>
+
+            <h4 class="text-muted">"{{ post.title }}"</h4>
+
+            <p class="text-danger">Hành động này không thể hoàn tác!</p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <button type"submit" class="btn btn-danger">
+                    Vâng, tôi chắc chắn, Xóa!
+                </button>
+
+                <a href="{% url 'post_detail' post.pk %}" class="btn btn-secondary">
+                    Hủy
+                </a>
+            </form>
+        </div>
+    </div>
+{% endblock %}
